@@ -7,15 +7,16 @@ producer = KafkaProducer(bootstrap_servers=['localhost:9092'],
                          value_serializer=lambda x: 
                          dumps(x).encode('utf-8'))
 
-with open("../dataset/ratings.csv") as file:
-    next(file)
+with open("dataset/ratings.csv") as f:
+    next(f)
     # reader = csv.DictReader(file,delimiter=",")
-    for i,row in enumerate(file):
+    # file = f.readlines()
+    for i,row in enumerate(f):
         producer.send('movies', value=row)
-        print(row)
-        if i > 100:
-            break
-        sleep(1)
+        # print(row)
+        # if i > 30:
+        #     break
+        sleep(2)
 
 # with open("../dataset/ratings.csv",'r') as file:
 #     count = 1
