@@ -49,4 +49,5 @@ Misal:
 10. masukkan request API.  
     dengan format : ```http://localhost/<int:userId>/ratings/<int:movieId>/<int:model>```  
     ```curl http://localhost:5432/76/ratings/553/2```  
-![alt text](img/new-movie-model.png)
+![alt text](img/new-movie-model.png)  
+dataset : https://www.kaggle.com/rounakbanik/the-movies-dataset
