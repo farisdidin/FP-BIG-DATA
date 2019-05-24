@@ -3,9 +3,9 @@ from shutil import copyfile
 # from pymongo import MongoClient
 from json import loads
 
-BATCH_SIZE = 10
+BATCH_SIZE = 300000
 BATCH_NUM = 1
-OUTPUT_FILE = "output-"
+OUTPUT_FILE = "output/output-"
 
 consumer = KafkaConsumer(
     'movies',
@@ -43,7 +43,6 @@ for message in consumer:
     output_file.write(message+"\n")
     count+=1
     print(message)
-    if BATCH_NUM >= 3:
-        break   
+   
     # collection.insert_one(message)
     # print('{} added to {}'.format(message, collection))\

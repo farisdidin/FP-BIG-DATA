@@ -10,21 +10,21 @@ logger = logging.getLogger(__name__)
  
 from flask import Flask, request
 
-@main.route("/<int:userId>/ratings/<int:movieId>", methods=["GET"])
-def movie_ratings(userId, movieId):
+@main.route("/<int:userId>/ratings/<int:movieId>/<int:model>", methods=["GET"])
+def movie_ratings(userId, movieId, model):
     logger.debug("User %s rating requested for anime %s", userId, movieId)
-    ratings = recommendation_engine.get_ratings_for_movie_ids(userId, movieId)
+    ratings = recommendation_engine.get_ratings_for_movie_ids(userId, movieId, model)
     clear = json.dumps(ratings)
     # clear=str(clear)
     # clear2 = clear.replace('\"','"').replace('{"0":'," ").replace("},",",").replace("}}","}")
-    return clear2
+    return clear
     # userId = str(userId)
     # movieId = str(movieId)
     # return userId+" "+movieId
 
-@main.route("/<int:userId>/top/ratings/<int:movieCount>", methods=["GET"])
-def movie_top_ratings(userId,movieCount):
-    ratings = recommendation_engine.get_top_ratings(userId,movieCount)
+@main.route("/<int:userId>/top/ratings/<int:movieCount>/<int:model>", methods=["GET"])
+def movie_top_ratings(userId,movieCount,model):
+    ratings = recommendation_engine.get_top_ratings(userId, movieCount, model)
 
     return json.dumps(ratings)
 

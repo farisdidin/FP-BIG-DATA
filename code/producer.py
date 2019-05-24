@@ -1,3 +1,4 @@
+from __future__ import print_function
 from time import sleep
 from json import dumps
 from kafka import KafkaProducer
@@ -7,21 +8,13 @@ producer = KafkaProducer(bootstrap_servers=['localhost:9092'],
                          value_serializer=lambda x: 
                          dumps(x).encode('utf-8'))
 
-with open("dataset/ratings.csv") as f:
-    next(f)
+with open("dataset/ratings2.csv") as f:
     # reader = csv.DictReader(file,delimiter=",")
     # file = f.readlines()
-    for i,row in enumerate(f):
+    next(f)
+    for row in f:
+        row=row.rstrip("\n")
         producer.send('movies', value=row)
-        # print(row)
-        # if i > 30:
-        #     break
-        sleep(2)
+        print(row)
+        sleep(0.001)
 
-# with open("../dataset/ratings.csv",'r') as file:
-#     count = 1
-#     next(file)
-#     for i,line in enumerate(file):
-#         print(line)
-#         if i > 10:
-#             break
